@@ -8,10 +8,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.activitatcasa1.R
+import com.example.activitatcasa1.activities.MenuInternoActivity
 import com.example.activitatcasa1.bd.MiBancoOperacional
 import com.example.activitatcasa1.databinding.FragmentHomeBinding
 import com.example.activitatcasa1.pojos.Cliente
-import com.example.activitatcasa1.activities.MenuInternoActivity
 
 class fragment_home : Fragment() {
 

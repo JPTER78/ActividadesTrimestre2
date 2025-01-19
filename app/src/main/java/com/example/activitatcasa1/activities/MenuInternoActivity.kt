@@ -9,18 +9,22 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.activitatcasa1.R
+import com.example.activitatcasa1.databinding.ActivityMenuInternoBinding
 import com.example.activitatcasa1.fragments.fragment_aboutus
 import com.example.activitatcasa1.fragments.fragment_home
 import com.example.activitatcasa1.fragments.fragment_settings
+import com.example.activitatcasa1.fragments.fragment_share
 import com.google.android.material.navigation.NavigationView
 
 class MenuInternoActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+    private lateinit var binding: ActivityMenuInternoBinding
     private lateinit var drawerLayout: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_menu_interno)
+        binding = ActivityMenuInternoBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         drawerLayout = findViewById(R.id.drawer_layout)
         val toolbar = findViewById<Toolbar>(R.id.appbar)
@@ -29,10 +33,23 @@ class MenuInternoActivity : AppCompatActivity(), NavigationView.OnNavigationItem
         val navigationView = findViewById<NavigationView>(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener(this)
 
-        // Configurar el ActionBarDrawerToggle para manejar la apertura y cierre del Drawer
         val toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav, R.string.close_nav)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
+
+        binding.ayuda.setOnNavigationItemSelectedListener {
+            it.isChecked = true
+            when (it.itemId) {
+                R.id.navigation_home -> {supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, fragment_home()).commit()}
+                R.id.navigation_dashboard -> {supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, fragment_share()).commit()}
+                R.id.navigation_notifications -> {supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, fragment_settings()).commit()}
+            }
+            false
+        }
+
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -49,12 +66,9 @@ class MenuInternoActivity : AppCompatActivity(), NavigationView.OnNavigationItem
                 Toast.makeText(this, "Logout!", Toast.LENGTH_SHORT).show()
                 finish()
 
-
-
             }
         }
 
-        // Cerrar el Drawer después de seleccionar una opción
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
