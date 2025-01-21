@@ -12,8 +12,10 @@ import com.example.activitatcasa1.R
 import com.example.activitatcasa1.databinding.ActivityMenuInternoBinding
 import com.example.activitatcasa1.fragments.fragment_aboutus
 import com.example.activitatcasa1.fragments.fragment_home
+import com.example.activitatcasa1.fragments.fragment_menuprincipal
 import com.example.activitatcasa1.fragments.fragment_settings
 import com.example.activitatcasa1.fragments.fragment_share
+import com.example.activitatcasa1.pojos.Cliente
 import com.google.android.material.navigation.NavigationView
 
 class MenuInternoActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -22,11 +24,14 @@ class MenuInternoActivity : AppCompatActivity(), NavigationView.OnNavigationItem
     private lateinit var drawerLayout: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
+
         binding = ActivityMenuInternoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         drawerLayout = findViewById(R.id.drawer_layout)
+
         val toolbar = findViewById<Toolbar>(R.id.appbar)
         setSupportActionBar(toolbar)
 
@@ -37,23 +42,45 @@ class MenuInternoActivity : AppCompatActivity(), NavigationView.OnNavigationItem
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
+        val cliente = intent.getSerializableExtra("cliente") as Cliente?
+
+        val fragment = fragment_menuprincipal().apply {
+            arguments = Bundle().apply {
+                putSerializable("cliente", cliente)
+            }
+        }
+
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment).commit()
+        }
+
         binding.ayuda.setOnNavigationItemSelectedListener {
+
             it.isChecked = true
             when (it.itemId) {
-                R.id.navigation_home -> {supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, fragment_home()).commit()}
-                R.id.navigation_dashboard -> {supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, fragment_share()).commit()}
-                R.id.navigation_notifications -> {supportFragmentManager.beginTransaction()
+
+                R.id.navigation_home -> {
+                    supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, fragment_menuprincipal()).commit()}
+                R.id.navigation_dashboard -> {
+                    supportFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container, fragment_settings()).commit()}
+                R.id.navigation_notifications -> {
+                    supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, fragment_share()).commit()}
+
             }
             false
+
         }
 
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+
         when (item.itemId) {
+
             R.id.nav_home -> supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, fragment_home()).commit()
             R.id.nav_settings -> supportFragmentManager.beginTransaction()
@@ -71,14 +98,16 @@ class MenuInternoActivity : AppCompatActivity(), NavigationView.OnNavigationItem
 
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
+
     }
 
     override fun onBackPressed() {
+
         super.onBackPressed()
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed() // Comportamiento normal al presionar el botón de atrás
-        }
+        } else { super.onBackPressed() }
+
     }
+
 }

@@ -40,14 +40,12 @@ class fragment_home : Fragment() {
             val clienteValidado = banco?.login(clienteTemporal)
 
             if (clienteValidado != null) {
-                // Cliente validado correctamente
+
                 val intent = Intent(requireContext(), MenuInternoActivity::class.java)
                 intent.putExtra("cliente", clienteValidado)
                 startActivity(intent)
-            } else {
-                // Error en el login
-                Toast.makeText(requireContext(), "NIF o contraseña incorrectos", Toast.LENGTH_SHORT).show()
-            }
+
+            } else { Toast.makeText(requireContext(), "NIF o contraseña incorrectos", Toast.LENGTH_SHORT).show() }
         }
     }
 
