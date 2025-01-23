@@ -42,43 +42,15 @@
         android:layout_width="190dp"
         android:layout_height="48dp"
         android:layout_marginTop="168dp"
-        android:text="Transacciones"
+        android:text="Ajustes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewGitano" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="190dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="16dp"
-        android:text="Abrir Cuenta"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button6" />
-
     <!-- Button 3 -->
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="190dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="16dp"
-        android:text="Entrar en Paro"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button2" />
 
     <!-- Button 4 -->
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="190dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="16dp"
-        android:text="Salir"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button4" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

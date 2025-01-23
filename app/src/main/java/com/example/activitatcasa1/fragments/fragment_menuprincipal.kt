@@ -1,11 +1,13 @@
 package com.example.activitatcasa1.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.activitatcasa1.R
+import com.example.activitatcasa1.activities.SettingsActivity
 import com.example.activitatcasa1.databinding.FragmentHomeBinding
 import com.example.activitatcasa1.databinding.FragmentMenuprincipalBinding
 import com.example.activitatcasa1.pojos.Cliente
@@ -54,6 +56,14 @@ class fragment_menuprincipal : Fragment() {
 
 
         binding.textViewGitano.text = binding.textViewGitano.text.toString() + " ${cliente?.getNombre().toString()}"
+
+        binding.button6.setOnClickListener {
+
+            val intent = Intent(requireContext(), SettingsActivity::class.java)
+            startActivity(intent)
+
+
+        }
 
     }
 

@@ -1,0 +1,7 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+    <SwitchPreferenceCompat
+        app:key="reproducirMusica"
+        app:summaryOff="No escuchar la música mientras se ejecuta la aplicación"
+        app:summaryOn="Escuchar la música mientras se ejecuta la aplicación"
+        app:title="Música" />
+</PreferenceScreen>
