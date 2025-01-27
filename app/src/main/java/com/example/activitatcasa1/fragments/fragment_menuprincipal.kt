@@ -54,14 +54,14 @@ class fragment_menuprincipal : Fragment() {
 
         val cliente = arguments?.getSerializable("cliente") as? Cliente
 
+        val nombreCliente:String = cliente?.getNombre().toString()
 
-        binding.textViewGitano.text = binding.textViewGitano.text.toString() + " ${cliente?.getNombre().toString()}"
+        binding.textViewGitano.text = binding.textViewGitano.text.toString() + " " + nombreCliente
 
         binding.button6.setOnClickListener {
 
             val intent = Intent(requireContext(), SettingsActivity::class.java)
             startActivity(intent)
-
 
         }
 

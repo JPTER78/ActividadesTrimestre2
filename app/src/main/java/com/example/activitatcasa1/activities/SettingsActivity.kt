@@ -14,7 +14,9 @@ class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings)
+
+        binding = ActivitySettingsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         if (savedInstanceState == null) {
             supportFragmentManager
@@ -23,7 +25,6 @@ class SettingsActivity : AppCompatActivity() {
                 .commit()
         }
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         binding.button3.setOnClickListener {
 

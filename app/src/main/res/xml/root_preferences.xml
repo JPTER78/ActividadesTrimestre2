@@ -1,7 +1,32 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
-    <SwitchPreferenceCompat
-        app:key="reproducirMusica"
-        app:summaryOff="No escuchar la música mientras se ejecuta la aplicación"
-        app:summaryOn="Escuchar la música mientras se ejecuta la aplicación"
-        app:title="Música" />
+
+    <PreferenceCategory app:title="Categoría 1">
+        <SwitchPreferenceCompat
+            app:key="reproducirMusica"
+            app:summaryOff="No escuchar la música."
+            app:summaryOn="Escuchar la música."
+            app:title="Música" />
+        <EditTextPreference
+            app:key="nick"
+            app:title="Nick por defecto"
+            app:summary="Introduzca su nick por defecto"
+            app:dialogTitle="Nick por defecto" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Categoría 2">
+        <ListPreference
+            app:key="pais"
+            app:title="País de residencia"
+            app:useSimpleSummaryProvider="true"
+            app:dialogTitle="Indicar País donde vives"
+            app:entries="@array/pais"
+            app:entryValues="@array/codigopais" />
+        <MultiSelectListPreference
+            app:key="paisesVisitados"
+            app:title="Países visitados"
+            app:summary="Lista de países visitados"
+            app:dialogTitle="Indicar Países que se ha visitado"
+            app:entries="@array/pais"
+            app:entryValues="@array/codigopais" />
+    </PreferenceCategory>
 </PreferenceScreen>
